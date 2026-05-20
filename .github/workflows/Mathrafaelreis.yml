@@ -1,4 +1,3 @@
-cat > rafaelia_math_artifacts.yml << 'YML'
 project:
   name: "RAFAELIA Computational–Field Framework"
   short_name: "RAFAELIA-CFF"
@@ -275,8 +274,3 @@ outputs:
   manifest: "results/manifest.json"
   final_bundle: "RAFAELIA_CFF_RESULTS_BUNDLE.zip"
 
-retro:
-  F_ok: "YML organiza os 20 pontos em artefatos geráveis."
-  F_gap: "Ainda falta script executor para criar pastas, simulações e figuras."
-  F_next: "Gerar build_artifacts.sh + scripts Python mínimos."
-YML
