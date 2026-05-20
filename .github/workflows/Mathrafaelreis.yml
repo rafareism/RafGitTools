@@ -1,0 +1,282 @@
+cat > rafaelia_math_artifacts.yml << 'YML'
+project:
+  name: "RAFAELIA Computational–Field Framework"
+  short_name: "RAFAELIA-CFF"
+  version: "0.1.0"
+  status: "preprint-results-stage"
+  ethic: "Coerência × Amor × Prova"
+  objective: >
+    Gerar artefatos matemáticos, numéricos e visuais para sustentar um manuscrito
+    acadêmico testável sobre acoplamento entre campo físico, estado computacional,
+    topologia dinâmica e memória recursiva.
+
+paper:
+  title: "A Coupled Computational–Field Framework with Dynamic Topology and Recursive Memory"
+  target:
+    format: ["arXiv", "journal", "technical_report"]
+    language: "en-US"
+  core_field:
+    notation: "X(x,t) = (Psi(x,t), q(x,t), A_ij(x,t), R(x,t))"
+    components:
+      Psi: "campo ondulatório contínuo"
+      q: "estado computacional contínuo/discretizável"
+      A_ij: "topologia dinâmica / grafo ponderado"
+      R: "memória recursiva causal"
+
+constants:
+  phi: 1.618033988749895
+  sqrt3_over_2: 0.8660254037844386
+  pi: 3.141592653589793
+  kappa_expression: "(sqrt(3)/2)^(pi*phi)"
+  kappa_numeric: null
+  alpha_ema: 0.25
+
+model:
+  lagrangian:
+    kinetic_terms:
+      - "1/2 |d_t Psi|^2"
+      - "1/2 |d_t q|^2"
+      - "1/2 (d_t A_ij)^2"
+      - "1/2 (d_t R)^2"
+    gradient_terms:
+      - "- c^2/2 |grad Psi|^2"
+    potentials:
+      V_q: "1/2 m_q^2 q^2"
+      U_A: "1/2 m_A^2 A^2"
+      W_R: "- kappa R"
+    coupling_terms:
+      lambda_qPsi: "lambda q Psi"
+      gamma_Aqq: "gamma A_ij q_i q_j"
+
+  equations_of_motion:
+    Psi: "d_t^2 Psi - c^2 laplacian(Psi) = -lambda q"
+    q: "d_t^2 q = -m_q^2 q - lambda Psi - gamma A q"
+    A: "d_t^2 A = -m_A^2 A - gamma q^2"
+    R: "d_t^2 R = kappa"
+
+artifacts:
+  - id: A01
+    name: "formal_definition"
+    type: "markdown"
+    output: "artifacts/01_formal_definition.md"
+    purpose: "Definir X, domínio, variáveis, índices e hipóteses iniciais."
+    math_focus: ["campo composto", "domínio", "notação"]
+
+  - id: A02
+    name: "dimensional_analysis"
+    type: "markdown"
+    output: "artifacts/02_dimensional_analysis.md"
+    purpose: "Checar unidades de c, lambda, gamma, m_q, m_A e kappa."
+    math_focus: ["consistência dimensional", "unidades"]
+
+  - id: A03
+    name: "euler_lagrange_derivation"
+    type: "latex"
+    output: "artifacts/03_euler_lagrange_derivation.tex"
+    purpose: "Derivar formalmente as equações de movimento."
+    math_focus: ["Euler-Lagrange", "variação funcional"]
+
+  - id: A04
+    name: "memory_kernel_extension"
+    type: "latex"
+    output: "artifacts/04_memory_kernel_extension.tex"
+    purpose: "Substituir R simples por memória causal com kernel integral."
+    equation: "R(t) = int_0^t K(t-tau) F(tau) dtau"
+    math_focus: ["memória causal", "sistemas com atraso", "não-localidade temporal"]
+
+  - id: A05
+    name: "baseline_decoupled_model"
+    type: "python"
+    output: "src/05_baseline_decoupled.py"
+    purpose: "Rodar o modelo com lambda=0 e gamma=0."
+    math_focus: ["baseline", "controle experimental"]
+
+  - id: A06
+    name: "coupled_field_simulation_1d"
+    type: "python"
+    output: "src/06_coupled_field_simulation_1d.py"
+    purpose: "Simular Psi e q em 1D usando diferenças finitas."
+    math_focus: ["finite difference", "dinâmica acoplada"]
+
+  - id: A07
+    name: "resonance_scan"
+    type: "python"
+    output: "src/07_resonance_scan.py"
+    purpose: "Varrer lambda e gamma para detectar transferência de energia."
+    metric_outputs:
+      - "energy_Psi"
+      - "energy_q"
+      - "coupling_transfer_ratio"
+    math_focus: ["ressonância", "osciladores não-lineares"]
+
+  - id: A08
+    name: "fft_spectral_signature"
+    type: "python"
+    output: "src/08_fft_spectral_signature.py"
+    purpose: "Extrair espectro FFT e procurar bandas não harmônicas."
+    metric_outputs:
+      - "dominant_frequencies"
+      - "nonharmonicity_index"
+      - "spectral_entropy"
+    math_focus: ["FFT", "espectro", "assinatura não-inteira"]
+
+  - id: A09
+    name: "topology_dynamic_graph"
+    type: "python"
+    output: "src/09_topology_dynamic_graph.py"
+    purpose: "Evoluir A_ij como grafo ponderado."
+    metric_outputs:
+      - "mean_degree"
+      - "clustering"
+      - "modularity_proxy"
+      - "phase_transition_marker"
+    math_focus: ["teoria de grafos", "topologia dinâmica"]
+
+  - id: A10
+    name: "stability_energy_check"
+    type: "python"
+    output: "src/10_stability_energy_check.py"
+    purpose: "Medir estabilidade, erro energético e divergência."
+    metric_outputs:
+      - "total_energy"
+      - "energy_drift"
+      - "max_amplitude"
+      - "stability_flag"
+    math_focus: ["estabilidade numérica", "energia"]
+
+  - id: A11
+    name: "kappa_fractal_scan"
+    type: "python"
+    output: "src/11_kappa_fractal_scan.py"
+    purpose: "Comparar kappa RAFAELIA com outros valores de controle."
+    parameters:
+      kappa_modes:
+        - "rafaelia"
+        - "rational_control"
+        - "random_control"
+        - "zero_memory"
+    math_focus: ["kappa", "fractalidade", "controle"]
+
+  - id: A12
+    name: "parameter_table"
+    type: "csv"
+    output: "results/12_parameter_table.csv"
+    purpose: "Registrar parâmetros usados nas simulações."
+    columns:
+      - "run_id"
+      - "c"
+      - "m_q"
+      - "m_A"
+      - "lambda"
+      - "gamma"
+      - "kappa"
+      - "dt"
+      - "dx"
+      - "steps"
+
+  - id: A13
+    name: "prediction_table"
+    type: "markdown"
+    output: "artifacts/13_prediction_table.md"
+    purpose: "Transformar hipóteses em previsões falsificáveis."
+    predictions:
+      - "lambda != 0 gera bandas laterais no espectro"
+      - "gamma != 0 altera métricas topológicas de A_ij"
+      - "kappa != 0 altera memória e deriva temporal"
+      - "modelo acoplado difere do baseline desacoplado"
+
+  - id: A14
+    name: "fig_resonance"
+    type: "figure"
+    output: "figures/fig_01_resonance.png"
+    purpose: "Mostrar transferência de energia entre Psi e q."
+
+  - id: A15
+    name: "fig_fft"
+    type: "figure"
+    output: "figures/fig_02_fft_signature.png"
+    purpose: "Mostrar espectro e picos não harmônicos."
+
+  - id: A16
+    name: "fig_topology"
+    type: "figure"
+    output: "figures/fig_03_topology_evolution.png"
+    purpose: "Mostrar evolução de grau/clustering/modularidade."
+
+  - id: A17
+    name: "fig_energy_stability"
+    type: "figure"
+    output: "figures/fig_04_energy_stability.png"
+    purpose: "Mostrar conservação, deriva ou instabilidade."
+
+  - id: A18
+    name: "results_section"
+    type: "latex"
+    output: "paper/sections/results.tex"
+    purpose: "Gerar seção Results com figuras, métricas e interpretação."
+
+  - id: A19
+    name: "limitations_section"
+    type: "latex"
+    output: "paper/sections/limitations.tex"
+    purpose: "Declarar limites: fenomenológico, não quantizado, sem gauge fields."
+
+  - id: A20
+    name: "main_paper_latex"
+    type: "latex"
+    output: "paper/main.tex"
+    purpose: "Montar paper completo após resultados."
+
+workflow:
+  order:
+    - A01
+    - A02
+    - A03
+    - A04
+    - A05
+    - A06
+    - A07
+    - A08
+    - A09
+    - A10
+    - A11
+    - A12
+    - A13
+    - A14
+    - A15
+    - A16
+    - A17
+    - A18
+    - A19
+    - A20
+
+validation:
+  falsifiability:
+    required: true
+    criteria:
+      - "comparar modelo acoplado contra baseline"
+      - "registrar parâmetros completos"
+      - "gerar gráficos reproduzíveis"
+      - "medir estabilidade numérica"
+      - "não afirmar validação física sem dados reais"
+  reproducibility:
+    seed_required: true
+    fixed_parameters_required: true
+    code_required: true
+    figures_required: true
+
+outputs:
+  directories:
+    - "src"
+    - "results"
+    - "figures"
+    - "artifacts"
+    - "paper/sections"
+  manifest: "results/manifest.json"
+  final_bundle: "RAFAELIA_CFF_RESULTS_BUNDLE.zip"
+
+retro:
+  F_ok: "YML organiza os 20 pontos em artefatos geráveis."
+  F_gap: "Ainda falta script executor para criar pastas, simulações e figuras."
+  F_next: "Gerar build_artifacts.sh + scripts Python mínimos."
+YML
